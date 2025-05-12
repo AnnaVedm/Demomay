@@ -1,0 +1,45 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Demomay.MainWindow"
+		x:CompileBindings="False"
+        Title="Demomay">
+	<Grid ShowGridLines="True">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="6*"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		
+		<ListBox ItemsSource="{Binding Products_spisok}" Grid.Row="1">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Border Background="{Binding ProductColor}" BorderThickness="2" BorderBrush="Black" Height="240">
+						<StackPanel Orientation="Vertical" Margin="10">
+							<TextBlock Margin="690 0 0 0" Text="{Binding Article}"/>
+							<TextBlock Text="{Binding Productname}"/>
+							<TextBlock Text="{Binding Productiontype.ProducttypeName}"/>
+							<TextBlock Text="{Binding Productiontype.Koefficient}"/>
+							<StackPanel Orientation="Horizontal">
+							<TextBlock Text="Есть у следующих партнеров: "/>
+								<ListBox ItemsSource="{Binding PartnersProducts}">
+									<ListBox.ItemTemplate>
+										<DataTemplate>
+											<StackPanel Orientation="Horizontal">
+											<TextBlock Text="{Binding Partner.Partnername}"/>
+											<TextBlock Text=" - "/>
+												<TextBlock Text="{Binding Kolvoproduction}"/>
+											</StackPanel>
+										</DataTemplate>
+									</ListBox.ItemTemplate>
+								</ListBox>
+							</StackPanel>
+						</StackPanel>
+					</Border>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+			</ListBox>
+	</Grid>
+</Window>
